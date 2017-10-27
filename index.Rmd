@@ -1,0 +1,159 @@
+---
+title: "Cartographie avec R\n"
+output:
+  rmdformats::material:
+    highlight: kate
+    self_contained: true
+    code_folding: show
+    thumbnails: false
+    gallery: false
+    fig_width: 5
+    fig_height: 5
+    df_print: kable
+---
+
+
+```{r knitr_init, echo=FALSE, cache=FALSE}
+library(knitr)
+library(rmdformats)
+
+## Global options
+options(max.print = "75")
+opts_chunk$set(echo = TRUE,
+	             cache = FALSE,
+               prompt = FALSE,
+               tidy = FALSE,
+               comment = NA,
+               message = FALSE,
+               warning = FALSE)
+opts_knit$set(width = 75)
+
+knit_hooks$set(par = function(before, options, envir){
+  if (before){
+    par(mar=c(0,0,0,0))
+  } 
+})
+
+knit_hooks$set(par.title = function(before, options, envir){
+  if (before){
+    par(mar=c(0,0,1.2,0))
+  } 
+})
+```
+
+
+# Pourquoi utiliser R? 
+
+=> Faire des analyses reproductibles
+
+## La recherche reproductible
+
+Le principe de la reproductibilité est au fondement même des sciences
+
+La reproductibilité est le meilleur test de la validité d'une expérimentation scientifique.
+
+Par rapport aux sciences experimentales, Les sciences basées sur l'informatique ont l'avantage d'être plus facilement reproductibles.
+
+Accompagner les publications scientifiques des jeux de données et codes sources pour permettre aux collègues de reproduire les résultats.
+
+<img src="./img/peng-spectrum.jpg" alt="Peng, 2011" style="width: 100%; border:0px"/>
+<small>Peng, 2011</small>
+</br>
+
+Les cartes, comme les autres production graphiques ou statistiques sont des éléments à part entière des études scientifique.
+
+La grande majorité des cartes produites dans un contexte académique sont issues de processus comlexes. Elles sont donc souvent produites en utilisant une grande variété de logiciels et de formats.
+<img src="./img/chain1.png" alt="chain1" style="width: 100%; border:0px"/>
+
+
+Cette variété de formats et de logiciels rend difficile la reproduction des cartes.
+
+<img src="./img/chain2.png" alt="chain2" style="width: 100%; border:0px"/>
+
+
+Simplifier les chaines de traitement pour couvrir les différentes étapes de la construction cartographique :
+
+* Garder une trace cohérente des traitements effectués
+* Partager ses méthodes
+* Etre transparent, s'exposer à la critique
+* Faciliter les mises à jour
+* Travailler collectivement
+* Automatiser des taches
+* Lier fortement l'analyse et la représentation
+
+<img src="./img/Fig01.png" alt="mapspectrum" style="width: 100%; border:0px"/>
+
+
+
+## Le logicel R
+
+
+
+R est un langage et un environnement permettant de réaliser une variété de traitements statistiques et de représentations graphiques.
+
+R est un logiciel libre sous license GNU General Public License.
+
+R est multiplateforme (GNU/Linux, Windows, OS X…).
+
+
+Le logiciel R
+Son écosystème de packages
+Un environnement de développement intégré (IDE).
+
++ Des solutions de literate programming, tel que le Markdown et le RMardown.
+Literate programming : Une explication de la logique du programme en langage naturel, entremêlée de morceaux de code source.
+
++ Un logiciel de gestion de version, tel que git et la plateforme d'hébergement Github pour diffuser et partager ses résultats, travailler en équipe ou faire appel à des contributeurs. 
+
+
+
+# Les fonctionnalités spatiales de R 
+* Import / Export
+* Manipulation et affichage
+* Géotraitements
+
+
+## les historiques
+rgdal, sp et rgeos
+
+code legacy
+
+## Le futur 
+sf
+
+
+# Le package cartography 
+
+## Motivations
+
+## Vu d'ensemble
+
+## Alternatives
+ggplot2
+tmap
+
+
+# Ressources
+* Package cartography
+* Package sf
+* La cartographie
+
+
+# Merci
+
+Code / Slides
+https://github.com/riatelab/ReproducibleCartography/
+
+cartography
+Github: https://github.com/riatelab/cartography
+CRAN: https://cran.r-project.org/web/packages/cartography/
+
+Blogs
+rgeomatic: rgeomatic.hypotheses.org
+
+
+
+
+
+
+
