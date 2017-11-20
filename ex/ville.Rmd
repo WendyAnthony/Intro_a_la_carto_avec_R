@@ -240,7 +240,7 @@ Le package animation permet de réaliser des graphique animés. Nous créons ici
 ```{r, eval=FALSE}
 library(animation)
 
-png(filename = "fig/map-%02d.png", width = 1200, height = 637, res = 120)
+png(filename = "../img/map-%02d.png", width = 1200, height = 637, res = 120)
 for (i in 7:23){
   par(mar = c(0,0,1.2,0), bg = "white")
   plot(st_geometry(graticule), col = "lightblue", border = "white", lwd = 0.2, bg = "cornsilk2")
@@ -263,9 +263,9 @@ for (i in 7:23){
 dev.off()
 
 ani.options(interval = 1)
-setwd("./fig")
+setwd("../img")
 im.convert("map*.png", output = "animation.gif")
-setwd("../")
+setwd("../ex")
 ```
 
 

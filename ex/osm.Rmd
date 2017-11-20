@@ -128,7 +128,7 @@ resto$cuisine <- as.character(resto$cuisine)
 
 
 save(list= c("paris", "quartier", "seine", "parc", "bars", "metro", "resto"), 
-     file = "data/paname.RData", compress = "xz")
+     file = "../data/paname.RData", compress = "xz")
 ```
 
 # Analyse et Cartographie des bars à Paris
@@ -143,7 +143,7 @@ library(maptools)
 library(raster)
 library(units)
 
-load("data/paname.RData")
+load("../data/paname.RData")
 
 
 # 1st map

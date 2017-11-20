@@ -1,0 +1,11 @@
+base
+spatstat.data
+nlme
+rpart
+spatstat
+sf
+sp
+cartography
+maptools
+raster
+units

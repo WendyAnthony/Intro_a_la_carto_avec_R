@@ -118,7 +118,7 @@ Pour diffuser et partager ses résultats, travailler en équipe ou faire appel �
 
 
 
-## Mener des analyses reproductibles {.tabset .tabset-fade .tabset-pills}
+## Recherche reproductible {.tabset .tabset-fade .tabset-pills}
 
 ### 1
 Accompagner les publications scientifiques des jeux de données et codes sources pour permettre aux collègues de reproduire les résultats.
@@ -133,8 +133,7 @@ Les cartes, comme les autres production graphiques ou statistiques sont des él�
 <img src="./img/Fig01.png" alt="mapspectrum" style="width: 100%; border:0px"/>
 
 
-
-## Unifier les chaînes de traitement de l'information spatiale{.tabset .tabset-fade .tabset-pills}
+## Chaînes de traitements {.tabset .tabset-fade .tabset-pills}
 
 
 ### 1
@@ -519,7 +518,7 @@ text(x = 6271272, y = 3743765, labels = "Distance function:\n- type = exponentia
 
 # Ressources {.tabset .tabset-fade .tabset-pills}
 
-La présentation est accessible à cette adresse :     </br> **[https://rcarto.github.io/semin-r_2017](https://rcarto.github.io/semin-r_2017)**  
+La présentation est accessible à cette adresse :     </br> **[https://github.com/rCarto/Intro_a_la_carto_avec_R](https://github.com/rCarto/Intro_a_la_carto_avec_R)**  
 
 Son code source est accessible sur [GitHub](https://github.com/rCarto/semin-r_2017).  
 
@@ -623,7 +622,9 @@ Le créateur et *maintainer* de `sf` a publié un certain de nombre de vignettes
 
 # Exemples
 
-=> switch to markdowns
+1. [Villes](https://rcarto.github.io/Intro_a_la_carto_avec_R/ex/ville.html)
+
+2. [OpenStreetMap]((https://rcarto.github.io/Intro_a_la_carto_avec_R/ex/osm.html))
 
 
 
