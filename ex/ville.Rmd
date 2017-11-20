@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-![](fig/P2015evo.png)
+![](../img/P2015evo.png)
 
 <br>
 
@@ -59,10 +59,10 @@ library(sf)
 library(readxl)
 
 # import
-country <- st_read(dsn = "data/country.geojson", quiet = TRUE)
-graticule <- st_read(dsn = "data/graticule.geojson", quiet = TRUE)
-citypop <- data.frame(read_excel("data/citypop.xls", skip = 16))
-cityevo <- data.frame(read_excel("data/cityevo.xls", skip = 16))
+country <- st_read(dsn = "../data/country.geojson", quiet = TRUE)
+graticule <- st_read(dsn = "../data/graticule.geojson", quiet = TRUE)
+citypop <- data.frame(read_excel("../data/citypop.xls", skip = 16))
+cityevo <- data.frame(read_excel("../data/cityevo.xls", skip = 16))
 ```
 
 
@@ -269,7 +269,7 @@ setwd("../")
 ```
 
 
-![](fig/animation.gif)
+![](../img/animation.gif)
 
 ```{r, echo=FALSE}
 library(animation)
