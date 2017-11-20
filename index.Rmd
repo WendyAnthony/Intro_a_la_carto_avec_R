@@ -95,17 +95,17 @@ Les extensions (*packages*) sont mis à disposition sur le [CRAN](https://cran.u
 [RStudio](https://www.rstudio.com/) 
 
 <img src="img/Rstudio2.png" width=600px>
-
+[RStudio](https://www.rstudio.com/) 
 
 
 ## Et aussi
 
 
-### Des solutions de *literate programming* (Markdown, RMardown)
+### Des solutions de *literate programming* ([Markdown](https://daringfireball.net/projects/markdown/syntax), [R Mardown](http://rmarkdown.rstudio.com/))
 
-Literate programming : Une explication de la logique du programme en langage naturel, entremêlée de morceaux de code source.
+[Literate programming](https://en.wikipedia.org/wiki/Literate_programming) : Une explication de la logique du programme en langage naturel, entremêlée de morceaux de code source.
 
-### Des solutions de gestion de version (git, Github)
+### Des solutions de gestion de version ([git](https://fr.wikipedia.org/wiki/Git), Github)
 
 Pour diffuser et partager ses résultats, travailler en équipe ou faire appel à des contributeurs. 
 
@@ -118,33 +118,36 @@ Pour diffuser et partager ses résultats, travailler en équipe ou faire appel �
 
 
 
-## Mener des analyses reproductibles
+## Mener des analyses reproductibles {.tabset .tabset-fade .tabset-pills}
 
+### 1
 Accompagner les publications scientifiques des jeux de données et codes sources pour permettre aux collègues de reproduire les résultats.
 
 <img src="./img/peng-spectrum.jpg" alt="Peng, 2011" style="width: 100%; border:0px"/>
 <small>Peng, 2011</small>
 </br>
 
+### 2
 Les cartes, comme les autres production graphiques ou statistiques sont des éléments à part entière des études scientifique.
 
 <img src="./img/Fig01.png" alt="mapspectrum" style="width: 100%; border:0px"/>
 
 
 
-## Unifier les chaînes de traitement de l'information spatiale
+## Unifier les chaînes de traitement de l'information spatiale{.tabset .tabset-fade .tabset-pills}
 
 
+### 1
 La grande majorité des cartes produites dans un contexte académique sont issues de processus complexes. Elles sont donc souvent produites en utilisant une grande variété de logiciels et de formats.
 
 <img src="./img/chain1.png" alt="chain1" style="width: 100%; border:0px"/>
 
-
+### 2
 Cette variété de formats et de logiciels rend difficile la reproduction des cartes.
 
 <img src="./img/chain2.png" alt="chain2" style="width: 100%; border:0px"/>
 
-
+### 3
 Simplifier les chaines de traitement pour couvrir les différentes étapes de la construction cartographique.
 
 <img src="./img/chain3.png" alt="chain2" style="width: 100%; border:0px"/>
