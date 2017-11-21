@@ -153,7 +153,7 @@ plot(parc, col = "#CDEBB2", border = NA, add=T)
 plot(seine, col = "#AAD3DF", add=T, lwd = 4)
 plot(st_geometry(quartier), col = NA,lty = 2, lwd = 0.2, add=T)
 plot(bars, add=T, col = "#0000ff", pch = 20, cex = 0.2)
-layoutLayer(title = "Cafés, bars et pubs à Paris", scale = 1,
+layoutLayer(title = "Les bars à Paris", scale = 1,
             north = T,
             tabtitle = TRUE, 
             sources = "Map data © OpenStreetMap contributors, under CC BY SA.", 
@@ -178,7 +178,7 @@ plot(st_geometry(quartier), col = NA,lty = 2, lwd = 0.2, add=T)
 propSymbolsLayer(x = quartier, var = "nbar", inches = 0.2, col = "red", 
                  legend.pos = "topright", 
                  legend.title.txt = "Nombre de bars\npar quartier")
-layoutLayer(title = "Cafés, bars et pubs à Paris", scale = 1,
+layoutLayer(title = "Les bars à Paris", scale = 1,
             tabtitle = TRUE, 
             sources = "Map data © OpenStreetMap contributors, under CC BY SA.", 
             author = "cartography 2.0.2") 
@@ -194,7 +194,7 @@ choroLayer(quartier, var = "dbar", border = NA,
 plot(parc, col = "#E2CCB5", border = NA, add=T)
 plot(seine, col = "#AAD3DF", add=T, lwd = 4)
 plot(st_geometry(quartier), col = NA,lty = 2, lwd = 0.2, add=T)
-layoutLayer(title = "Cafés, bars et pubs à Paris", scale = 1,
+layoutLayer(title = "Les bars à Paris", scale = 1,
             tabtitle = TRUE, 
             sources = "Map data © OpenStreetMap contributors, under CC BY SA.", 
             author = "cartography 2.0.2") 
@@ -212,12 +212,72 @@ propSymbolsChoroLayer(x = quartier, var = "nbar", var2 = "dbar",
                  legend.var2.pos  = "topright", 
                  legend.var2.title.txt = "Densité de bars\npar km2",
                  legend.var.title.txt = "Nombre de bars\npar quartier")
-layoutLayer(title = "Cafés, bars et pubs à Paris", scale = 1,
+layoutLayer(title = "Les bars à Paris", scale = 1,
             tabtitle = TRUE, 
             sources = "Map data © OpenStreetMap contributors, under CC BY SA.", 
             author = "cartography 2.0.2") 
 ```
 
+## Analyse par station de métro
+
+```{r, eval=TRUE}
+library(sf)
+# distance entre toutes les stations
+x <- st_distance(metro, metro)
+diag(x) <- 10000
+# distance à la plus proche station
+dmin <- apply(x, 2, min)
+metro$nbar <- lengths(st_covers(st_buffer(x = metro, dist = mean(dmin)), bars))
+
+par(mar = c(0,0,1.2,0))
+plot(paris, col = "#D9D0C9", border = NA, bg = "#FBEDDA")
+plot(parc, col = "#CDEBB2", border = NA, add=T)
+plot(seine, col = "#AAD3DF", add=T, lwd = 4)
+plot(st_geometry(quartier), col = NA,lty = 2, lwd = 0.2, add=T)
+propSymbolsChoroLayer(x = metro, var = "nbar", var2 = "nbar",
+                      col = carto.pal("wine.pal",5), inches = 0.1,
+                      method = "fisher-jenks", nclass = 5, add=T,
+                      legend.var.pos = "topleft", 
+                      legend.var.title.txt = "Nombre de bars à proximité\nde la station de métro")
+layoutLayer(title = "Bars à Paris", scale = 1,
+            tabtitle = TRUE, 
+            sources = "Map data © OpenStreetMap contributors, under CC BY SA.", 
+            author = "cartography 2.0.2") 
+
+
+
+```
+
+
+
+
+
+## Carte interactive
+```{r, eval=TRUE}
+library(leaflet)
+## Initialisation 
+
+metrounp <- st_transform(metro, 4326)
+metrounp <- metrounp[order(metrounp$nbar, decreasing = T),]
+metrounp$size <- sqrt(metrounp$nbar*15 / pi)
+metrounp$label <- paste0("<b>", metrounp$name, "</b> <br>", 
+                         metrounp$nbar," bars à proximité.")
+m <- leaflet(padding = 0)
+m <- addTiles(m)
+m <- addCircleMarkers(map = m, 
+                      lng = st_coordinates(metrounp)[,1], 
+                      lat = st_coordinates(metrounp)[,2], 
+                      radius = metrounp$size, weight = 0.25, 
+                      stroke = T, opacity = 100,
+                      fill = T, fillColor = "#920000", 
+                      fillOpacity = 100,
+                      popup = metrounp$label,
+                      color = "white")
+m
+
+
+
+```
 
 ## Analyse lissée de la répartition des bars
 
@@ -235,7 +295,7 @@ cols <- colorRampPalette(c("black","#940000", "white"))(length(bks)-1)
 plot(paris, col = NA, border = NA, main="", bg = "#FBEDDA")
 plot(rasdens, breaks= bks, col=cols, add = T,legend=F)
 legendChoro(pos = "topright",cex = 0.7,
-            title.txt = "Densité de Bars\ndans un voisinage gaussien\n(bars par km2)",
+            title.txt = "Densité de Bars\nkde, sigma=200m\n(bars par km2)",
             breaks = bks-1, nodata = FALSE,
             col = cols)
 plot(seine, col = "#AAD3DF", add=T, lwd = 4)
@@ -243,7 +303,7 @@ plot(parc, col = "#CDEBB235", border = NA, add=T)
 plot(quartier$geometry, add=T, border = "white",lty = 2, lwd = 0.1)
 plot(bars, add=T, col = "#0000ff90", pch = 20, cex = 0.1)
 plot(paris, col = NA, add=T)
-layoutLayer(title = "Cafés, bars et pubs à Paris", scale = 1,
+layoutLayer(title = "Les bars à Paris", scale = 1,
             tabtitle = TRUE, 
             sources = "Map data © OpenStreetMap contributors, under CC BY SA.", 
             author = "cartography 2.0.2") 
@@ -270,9 +330,6 @@ layoutLayer(title = "Tous les restaurants", scale = 1,
             sources = "Map data © OpenStreetMap contributors, under CC BY SA.", 
             author = "cartography 2.0.2") 
 
-
-# nf <- layout(mat = matrix(data = c(1,1,2,1,1,3,4,5,6), nrow = 3, byrow = T), 
-#              widths = c(1,1,1), respect = FALSE)
 ```
 
 
@@ -311,74 +368,12 @@ densityMap <- function(x = resto, cuisine = NULL, title, sigma ){
 }
 
 densityMap(x = resto, title = "Tous les restaurants", sigma = 500)
-densityMap(x = resto, cuisine = c('japanese','sushi'), title = "Retaurant japonais", sigma = 500)
-densityMap(x = resto, cuisine = c('pizza','italian'), title = "Restaurant italiens", sigma = 500)
-densityMap(x = resto, cuisine = c('chinese'), title = "Retaurant chinois", sigma = 500)
-densityMap(x = resto, cuisine = c('korean'), title = "Restaurant coréens", sigma = 500)
-densityMap(x = resto, cuisine = c('indian'), title = "Restaurant indiens", sigma = 500)
-densityMap(x = resto, cuisine = c('asian', "thai", "vietnamese"), title = "Restaurant asiatiques", sigma = 500)
-
-```
-
-
-
-```{r, eval=FALSE}
-
-# 06
-# detach("package:spatstat",character.only=TRUE,unload=TRUE)
-library(sf)
-x <- st_distance(metro, metro)
-diag(x) <- 10000
-dmin <- apply(x, 2, min)
-metro$nbar <- lengths(st_covers(st_buffer(x = metro, dist = 375), bars))
-png("Paris06.png", width = 1200, height = 663, res = 100)
-par(mar = c(0,0,1.2,0))
-plot(paris, col = "#D9D0C9", border = NA, bg = "#FBEDDA")
-plot(parc, col = "#CDEBB2", border = NA, add=T)
-plot(seine, col = "#AAD3DF", add=T, lwd = 4)
-plot(st_geometry(quartier), col = NA,lty = 2, lwd = 0.2, add=T)
-x <- st_buffer(x = metro, dist = 375)
-x$r <- dmin/2
-choroLayer(x = x, var = "nbar", col = carto.pal("wine.pal",5),
-                       method = "fisher-jenks", nclass = 5, add=T,
-                 legend.pos = "topright", 
-                 legend.title.txt = "Nombre de bars à proximité\nde la station de métro")
-labelLayer(x = metro[x$nbar>50,], txt = "name", overlap = F, 
-           show.lines = F, halo = T, r = 0.09)
-layoutLayer(title = "Cafés, bars et pubs à Paris", scale = 1,
-            tabtitle = TRUE, 
-            sources = "Map data © OpenStreetMap contributors, under CC BY SA.", 
-            author = "cartography 2.0.2") 
-dev.off()
-
-# 7
-library(osrm)
-bars <- st_sf(bars)
-options(osrm.server = "http://0.0.0.0:5001/", osrm.profile = "walk")
-
-distA2 <- osrmTable(src = as(metro, "Spatial"),
-                    dst = as(bars, "Spatial"))
-mat <- distA2$durations
-
-metro$nb10 <- apply(mat,1, FUN = function(x){sum(x<=5)})
-
-
-par(mar = c(0,0,1.2,0))
-plot(paris, col = "#D9D0C9", border = NA, bg = "#FBEDDA")
-plot(parc, col = "#CDEBB2", border = NA, add=T)
-plot(seine, col = "#AAD3DF", add=T, lwd = 4)
-plot(st_geometry(quartier), col = NA,lty = 2, lwd = 0.2, add=T)
-metrob <- st_buffer(metro, 150)
-choroLayer(metrob, var = "nb10",  add=T, legend.pos = "topright",
-           method = "equal", nclass = 7, col = carto.pal("red.pal", 7),
-           legend.title.txt = "nb bars à moins\nde 5 min à pied",
-           legend.values.rnd = -1,
-           border = "grey20", lwd = .5)
-layoutLayer(title = "Cafés, bars et pubs à Paris", scale = 1,theme = 'wine.pal',
-            tabtitle = TRUE, 
-            sources = "Map data © OpenStreetMap contributors, under CC BY SA.", 
-            author = "cartography 2.0.2") 
-
+densityMap(x = resto, cuisine = c('japanese','sushi'), title = "Cuisine japonaise", sigma = 500)
+densityMap(x = resto, cuisine = c('pizza','italian'), title = "Cuisine italienne", sigma = 500)
+densityMap(x = resto, cuisine = c('chinese'), title = "Cuisine chinoise", sigma = 500)
+densityMap(x = resto, cuisine = c('korean'), title = "Cuisine coréenne", sigma = 500)
+densityMap(x = resto, cuisine = c('indian'), title = "Cuisine Indienne", sigma = 500)
+densityMap(x = resto, cuisine = c('asian', "thai", "vietnamese"), title = "Cuisine asiatique", sigma = 500)
 
 ```
 

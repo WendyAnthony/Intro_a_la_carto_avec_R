@@ -5,3 +5,5 @@ sp
 sf
 cartography
 SpatialPosition
+raster
+rgdal
