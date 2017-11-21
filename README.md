@@ -8,6 +8,18 @@ Timothée Giraud
 [http://rgeomatic.hypotheses.org/](http://rgeomatic.hypotheses.org/)  
 
 
-Cette présentation est accessible [ici](https://rcarto.github.io/Intro_a_la_carto_avec_R/index.html).
+## Présentation 
+
+[Introduction à la cartographie avec R](https://rcarto.github.io/Intro_a_la_carto_avec_R/index.html).
+
+
+
+## Exemples
+
+1. [Villes](https://rcarto.github.io/Intro_a_la_carto_avec_R/ex/ville.html)
+
+2. [OpenStreetMap](https://rcarto.github.io/Intro_a_la_carto_avec_R/ex/osm.html)
+
+
 
 ![](img/map8.png)
