@@ -377,3 +377,10 @@ densityMap(x = resto, cuisine = c('asian', "thai", "vietnamese"), title = "Cuisi
 
 ```
 
+# Pour la reproductibilité...
+
+Voici les informations sur ma configuration : 
+
+```{r}
+sessionInfo()
+```

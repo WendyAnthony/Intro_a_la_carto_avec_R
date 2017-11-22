@@ -66,6 +66,8 @@ Timothée Giraud
 # R {.tabset .tabset-fade .tabset-pills}
 
 
+## 1
+
 <img src="img/Rlogo.png" width=300px>  
 
 
@@ -77,7 +79,7 @@ R est **multiplateforme** (GNU/Linux, Windows, OS X…).
 
 
 
-## 1
+## 2
 
 ### Un écosystème de packages  
 
@@ -90,8 +92,14 @@ Les extensions (*packages*) sont mis à disposition sur le [CRAN](https://cran.u
 <small>http://blog.revolutionanalytics.com/2017/01/cran-10000.html</small>
 
 
+Les packages sont organisés en Task Views
+<img src="img/taskviews.png" width=600px>  
 
-## 2
+
+La Task View "Spatial" : 	https://CRAN.R-project.org/view=Spatial
+
+
+## 3
 
 ### Un environnement de développement intégré (IDE).
 
@@ -101,7 +109,7 @@ Les extensions (*packages*) sont mis à disposition sur le [CRAN](https://cran.u
 
 
 
-## 3
+## 4
 ### Et aussi
 
 
@@ -190,27 +198,6 @@ Simplifier les chaines de traitement pour couvrir les différentes étapes de la
 - Première *release* : 31 octobre 2016   
 - Auteur principal et *maintainer* : [Edzer Pebesma](https://github.com/edzer)    
 - Financement : <a href="https://www.r-consortium.org/projects/awarded-projects"><img src="img/rconsortium.png" width="200"></a>  
-
-
-**Avec `sp` et `rgdal` :**
-```{r compsp, cache = TRUE}
-library('sp')
-library('rgdal')
-nuts3 <- readOGR(dsn = "data", layer = "nuts3", verbose = FALSE)
-str(nuts3[1:3,])
-```
-
-**Avec `sf` :**
-
-```{r compsf, par = TRUE, cache = TRUE}
-library(sf)
-nuts3 <- st_read(dsn = "data/nuts3.shp", quiet = TRUE)
-str(nuts3[1:3,])
-```
-
-
-
-
 
 
 <img src="img/sf.png" width="800">
@@ -321,11 +308,13 @@ Le créateur et *maintainer* de `sf` a publié un certain de nombre de vignettes
 
 # Le package cartography {.tabset .tabset-fade .tabset-pills}
 
+*Create and integrate maps in your R workflow. This package allows various cartographic representations such as proportional symbols, chroropleth, typology, flows or discontinuities maps. It also offers several features enhancing the graphic presentation of maps like cartographic palettes, layout elements (scale, north arrow, title...), labels, legends or access to some cartographic APIs.*
 
 
 ## Installation 
 
 - Version stable (CRAN)
+
 ```{r, eval = FALSE}
 install.packages("cartography")
 ```
@@ -716,7 +705,7 @@ Son code source est accessible sur [GitHub](https://github.com/rCarto/Intro_a_la
 
 
 `cartography`  
-Github: https://github.com/riatelab/cartography
+Github: https://github.com/riatelab/cartography  
 CRAN: https://cran.r-project.org/web/packages/cartography/   
 
 rgeomatic  
