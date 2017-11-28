@@ -22,6 +22,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 > Ce document contient quelques explorations cartographiques de la base de données [World Urbanization Prospects](https://esa.un.org/unpd/wup/) des Nations Unies.
 
+repo : [https://github.com/rCarto/Intro_a_la_carto_avec_R/blob/master/ex/ville.Rmd](https://github.com/rCarto/Intro_a_la_carto_avec_R/blob/master/ex/ville.Rmd)
 
 
 

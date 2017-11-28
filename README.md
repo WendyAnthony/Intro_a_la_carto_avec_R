@@ -17,7 +17,7 @@ RTP CNRS "Réseau Interdisciplinaire autour de la Statistique" |  *Jeudi 23 Nove
 
 1. [Villes](https://rcarto.github.io/Intro_a_la_carto_avec_R/ex/ville.html)
 
-2. [OpenStreetMap](https://rcarto.github.io/Intro_a_la_carto_avec_R/ex/osm.html)
+2. [OpenStreetMap](https://rcarto.github.io/caRtosm/index.html)
 
 
 
